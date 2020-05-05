@@ -29,12 +29,17 @@ public class MemberEntity implements Serializable {
     @Column(nullable=false, name = "email_verification_status")
     private Boolean emailVerificationStatus = false;
 
-
+// seft join
     @JoinTable(name = "friend", joinColumns = {
             @JoinColumn(name = "member_id", referencedColumnName = "member_id", nullable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "friend_id", referencedColumnName = "member_id", nullable = false)})
     @ManyToMany
     private Collection<MemberEntity> friendCollection;
+
+    @OneToMany(
+            mappedBy = "member"
+    )
+    private Collection<TaskEntity> taskCollection;
 
     public Integer getId() {
         return id;
@@ -112,6 +117,13 @@ public class MemberEntity implements Serializable {
     }
     public void delelteFriendCollection(MemberEntity friendCollection) {
         this.friendCollection.remove(friendCollection);
+    }
+    // task
+    public void addTaskCollection(TaskEntity task) {
+        this.taskCollection.add(task);
+    }
+    public void delelteTaskCollection(TaskEntity task) {
+        this.taskCollection.remove(task);
     }
 }
 
