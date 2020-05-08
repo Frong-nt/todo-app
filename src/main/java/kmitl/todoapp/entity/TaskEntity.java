@@ -1,4 +1,4 @@
-package kmitl.todoapp.todoapp.entity;
+package kmitl.todoapp.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,8 +1,7 @@
-package kmitl.todoapp.todoapp.controller;
+package kmitl.todoapp.controller;
 
-import kmitl.todoapp.todoapp.entity.MemberEntity;
-import kmitl.todoapp.todoapp.entity.TaskEntity;
-import kmitl.todoapp.todoapp.repository.MemberRepository;
+import kmitl.todoapp.entity.MemberEntity;
+import kmitl.todoapp.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.List;
 import java.util.Optional;
 
 @RestController

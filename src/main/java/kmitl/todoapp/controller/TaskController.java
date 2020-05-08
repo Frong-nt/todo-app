@@ -1,10 +1,9 @@
-package kmitl.todoapp.todoapp.controller;
+package kmitl.todoapp.controller;
 
-import kmitl.todoapp.todoapp.entity.MemberEntity;
-import kmitl.todoapp.todoapp.entity.TaskEntity;
-import kmitl.todoapp.todoapp.exception.ResourceNotFoundException;
-import kmitl.todoapp.todoapp.repository.MemberRepository;
-import kmitl.todoapp.todoapp.repository.TaskRepository;
+import kmitl.todoapp.entity.TaskEntity;
+import kmitl.todoapp.repository.MemberRepository;
+import kmitl.todoapp.repository.TaskRepository;
+import kmitl.todoapp.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +26,8 @@ public class TaskController {
 
 
     @GetMapping("/{memberID}/tasks")
-    public Page<TaskEntity> getAllTaskByMemberId(@PathVariable(value = "memberID") Long memberID,
-                                                   Pageable pageable) {
+    public Page<TaskEntity> getAllTaskByMemberId(@PathVariable(value = "memberID") Integer memberID,
+                                                 Pageable pageable) {
         return taskRepository.findByMemberId(memberID, pageable);
     }
 
@@ -64,8 +63,8 @@ public class TaskController {
     }
 
     @DeleteMapping("/{memberID}/tasks/{taskID}")
-    public ResponseEntity<?> deleteComment(@PathVariable (value = "memberID") Long memberID,
-                                           @PathVariable (value = "taskID") Long taskID) {
+    public ResponseEntity<?> deleteComment(@PathVariable (value = "memberID") Integer memberID,
+                                           @PathVariable (value = "taskID") Integer taskID) {
         return taskRepository.findByIdAndMemberId(taskID, memberID).map(comment -> {
             taskRepository.delete(comment);
             return ResponseEntity.ok().build();
