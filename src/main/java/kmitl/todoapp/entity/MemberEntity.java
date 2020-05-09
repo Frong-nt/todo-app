@@ -20,14 +20,10 @@ public class MemberEntity implements Serializable {
     private String imageURL;
     @Column(nullable=false)
     private String email;
-    @Column(name = "encrypted_password")
-    private String encryptedPassword;
-    @Column(name = "email_verification_token")
-    private String emailVerificationToken;
-    @Column(nullable=false, name = "email_verification_status")
-    private Boolean emailVerificationStatus = false;
+    @Column(name = "password")
+    private String password;
 
-// seft join
+    // seft join
     @JoinTable(name = "friend", joinColumns = {
             @JoinColumn(name = "member_id", referencedColumnName = "member_id", nullable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "friend_id", referencedColumnName = "member_id", nullable = false)})
@@ -79,28 +75,12 @@ public class MemberEntity implements Serializable {
         this.imageURL = imageURL;
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
-    }
-
-    public String getEmailVerificationToken() {
-        return emailVerificationToken;
-    }
-
-    public void setEmailVerificationToken(String emailVerificationToken) {
-        this.emailVerificationToken = emailVerificationToken;
-    }
-
-    public Boolean getEmailVerificationStatus() {
-        return emailVerificationStatus;
-    }
-
-    public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
-        this.emailVerificationStatus = emailVerificationStatus;
+    public void setPassword(String encryptedPassword) {
+        this.password = encryptedPassword;
     }
 
     public Collection<MemberEntity> getFriendCollection() {

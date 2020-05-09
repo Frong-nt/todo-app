@@ -1,8 +1,10 @@
 package kmitl.todoapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 @Entity
 @Table(name = "task")
@@ -15,11 +17,15 @@ public class TaskEntity implements Serializable {
     private String name;
     private String description;
     private boolean status;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "dead_line")
-    private Timestamp  deadLine;
+    private Date deadLine;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "created_date")
 
-    private Timestamp createdDate;
+    private Date createdDate;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -57,19 +63,19 @@ public class TaskEntity implements Serializable {
         this.status = status;
     }
 
-    public Timestamp getDeadLine() {
+    public Date getDeadLine() {
         return deadLine;
     }
 
-    public void setDeadLine(Timestamp deadLine) {
+    public void setDeadLine(Date deadLine) {
         this.deadLine = deadLine;
     }
 
-    public Timestamp getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
