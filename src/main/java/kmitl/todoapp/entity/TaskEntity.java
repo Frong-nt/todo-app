@@ -18,7 +18,7 @@ public class TaskEntity implements Serializable {
     private String description;
     private boolean status;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "dead_line")
     private Date deadLine;
 
@@ -26,6 +26,8 @@ public class TaskEntity implements Serializable {
     @Column(name = "created_date")
 
     private Date createdDate;
+    @Column(name = "assignee")
+    private String assignee;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -85,5 +87,13 @@ public class TaskEntity implements Serializable {
 
     public void setMember(MemberEntity member) {
         this.member = member;
+    }
+
+    public String getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
     }
 }

@@ -58,6 +58,10 @@ public class TaskController {
         return taskRepository.findById(taskID).map(task -> {
             task.setName(taskRequest.getName());
             task.setDescription(taskRequest.getDescription());
+            task.setStatus(taskRequest.isStatus());
+            task.setAssignee(taskRequest.getAssignee());
+            task.setCreatedDate(taskRequest.getCreatedDate());
+            task.setDeadLine(taskRequest.getDeadLine());
             return taskRepository.save(task);
         }).orElseThrow(() -> new ResourceNotFoundException("TaskId " + taskID + "not found"));
     }
